@@ -1,4 +1,15 @@
 <?php
+$list1 = ["Входящие", "Учеба", "Работа", "Домашние дела", "Авто"];
+$pos1 = ["Собеседование в IT компании", '01.12.2019', 'Работа', false];
+$pos2 = ['Выполнить тестовое задание', '25.12.2019', 'Работа', false];
+$pos3 = ['Сделать задание первого разделя', '21.12.2019', 'Учеба', true];
+$pos4 = ['Встреча с другом', '22.12.2019', 'Входящие', false];
+$pos5 = ['Купить корм для кота', null, 'Домашние дела', false];
+$pos6 = ['Заказать пиццу', null, 'Домашние дела', false];
+$pos_all = [$pos1, $pos2, $pos3, $pos4, $pos5, $pos6];
+$index = 0;
+$num = count($list1);
+
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
 ?>
@@ -43,9 +54,17 @@ $show_complete_tasks = rand(0, 1);
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
                         <li class="main-navigation__list-item">
+
                             <a class="main-navigation__list-item-link" href="#">Название проекта</a>
                             <span class="main-navigation__list-item-count">0</span>
                         </li>
+                        <?php while ($index < $num): ?>
+                        <li class="main-navigation__list-item">
+                        <a class="main-navigation__list-item-link" href="#"><?=$list1[$index];?></a>
+                        <span class="main-navigation__list-item-count">0</span>
+                        </li>
+                    <?php $index++; ?>
+                    <?php endwhile; ?>
                     </ul>
                 </nav>
 
@@ -78,20 +97,7 @@ $show_complete_tasks = rand(0, 1);
                 </div>
 
                 <table class="tasks">
-                <?php if($show_complete_tasks==1): ?> 
-                
-                <tr class="tasks__item task task--completed">
-    <td class="task__select">
-        <label class="checkbox task__checkbox">
-            <input class="checkbox__input visually-hidden" type="checkbox" checked>
-            <span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
-        </label>
-    </td>
-    <td class="task__date">10.10.2019</td>
-    <td class="task__controls"></td>
-</tr>
-                
-                <?php endif; ?>
+               
                     <tr class="tasks__item task">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
@@ -107,6 +113,20 @@ $show_complete_tasks = rand(0, 1);
                         <td class="task__date"></td>
                     </tr>
                     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
+                    <?php if($show_complete_tasks==1): ?> 
+                
+                    <tr class="tasks__item task task--completed">
+                        <td class="task__select">
+                            <label class="checkbox task__checkbox">
+                                <input class="checkbox__input visually-hidden" type="checkbox" checked>
+                                <span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
+                            </label>
+                        </td>
+                        <td class="task__date">10.10.2019</td>
+                        <td class="task__controls"></td>
+                    </tr>
+                
+                    <?php endif; ?>
                 </table>
             </main>
         </div>
