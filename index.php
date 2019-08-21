@@ -8,7 +8,6 @@ $pos5 = ['Купить корм для кота', null, 'Домашние дел
 $pos6 = ['Заказать пиццу', null, 'Домашние дела', false];
 $pos_all = [$pos1, $pos2, $pos3, $pos4, $pos5, $pos6];
 $tasks = ['name' => '', 'data_end' => '', 'category' => '', 'complete' => ''];
-
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
 ?>
@@ -100,7 +99,7 @@ $show_complete_tasks = rand(0, 1);
                     <tr class="tasks__item task">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
-                                <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
+                                <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1"<?php if($tableTask[3]==true): ?> checked <?php endif; ?>>
                                 <span class="checkbox__text"><?= $tableTask[0]?></span>
                             </label>
                         </td>
