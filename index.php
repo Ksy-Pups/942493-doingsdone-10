@@ -1,13 +1,13 @@
 <?php
 $menu_left = ["Входящие", "Учеба", "Работа", "Домашние дела", "Авто"];
-$pos1 = ["Собеседование в IT компании", '01.12.2019', 'Работа', false];
-$pos2 = ['Выполнить тестовое задание', '25.12.2019', 'Работа', false];
-$pos3 = ['Сделать задание первого раздела', '21.12.2019', 'Учеба', true];
-$pos4 = ['Встреча с другом', '22.12.2019', 'Входящие', false];
-$pos5 = ['Купить корм для кота', null, 'Домашние дела', false];
-$pos6 = ['Заказать пиццу', null, 'Домашние дела', false];
-$pos_all = [$pos1, $pos2, $pos3, $pos4, $pos5, $pos6];
-$tasks = ['name' => '', 'data_end' => '', 'category' => '', 'complete' => ''];
+$tasks = [
+['name' => 'Собеседование в IT компании', 'data_end' => '01.12.2019', 'category' => 'Работа', 'complete' => false],
+['name' => 'Выполнить тестовое задание', 'data_end' => '25.12.2019', 'category' => 'Работа', 'complete' => false],
+['name' => 'Сделать задание первого раздела', 'data_end' => '21.12.2019', 'category' => 'Учеба', 'complete' => true],
+['name' => 'Встреча с другом', 'data_end' => '22.12.2019', 'category' => 'Входящие', 'complete' => false],
+['name' => 'Купить корм для кота', 'data_end' => null, 'category' => 'Домашние дела', 'complete' => false],
+['name' => 'Заказать пиццу', 'data_end' => null, 'category' => 'Домашние дела', 'complete' => false],
+];
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
 ?>
@@ -92,42 +92,28 @@ $show_complete_tasks = rand(0, 1);
                 </div>
 
                 <table class="tasks">
-               <?php foreach($pos_all as $tableTask):  ?>
-               <?php if ($tableTask[3]==true &&  $show_complete_tasks==0):?>
+               <?php foreach($tasks as $tableTask):  ?>
+               <?php if ($tableTask['complete']==true &&  $show_complete_tasks==0):?>
             <?php continue; ?>
             <?php endif;?>
-                    <tr class="tasks__item task">
+                    <tr class="tasks__item task <?php if ($tableTask['complete']==true):?>task--completed <?php endif; ?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
-                                <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1"<?php if($tableTask[3]==true): ?> checked <?php endif; ?>>
-                                <span class="checkbox__text"><?= $tableTask[0]?></span>
+                                <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1"<?php if($tableTask['complete']==true): ?> checked <?php endif; ?>>
+                                <span class="checkbox__text"><?= $tableTask['name']?></span>
                             </label>
                         </td>
                         
-                        <td class="task__date" style="align:centre;">
-                        <?= $tableTask[1]?> 
+                        <td >
+                        <?= $tableTask['data_end']?> 
                         </td>
 
-                        <td style="align:centre;">
-                        <?= $tableTask[2]?>
+                        <td >
+                        <?= $tableTask['category']?>
                         </td>
                      </tr>
                 <?php endforeach; ?>
-                    <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
-                    <?php if($show_complete_tasks==1): ?> 
-                
-                    <tr class="tasks__item task task--completed">
-                        <td class="task__select">
-                            <label class="checkbox task__checkbox">
-                                <input class="checkbox__input visually-hidden" type="checkbox" checked>
-                                <span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
-                            </label>
-                        </td>
-                        <td class="task__date">10.10.2019</td>
-                        <td class="task__controls"></td>
-                    </tr>
-                
-                    <?php endif; ?>
+                 
                 </table>
             </main>
         </div>
