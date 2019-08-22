@@ -19,6 +19,7 @@ foreach ($list_of_tasks as $list1) {
 }
 return $index;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
