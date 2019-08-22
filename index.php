@@ -10,6 +10,15 @@ $tasks = [
 ];
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
+function number_of_tasks ($list_of_tasks, $category) {
+    $index = 0;
+foreach ($list_of_tasks as $list1) {
+    if ($list1 ['category'] == $category) {
+        $index ++;
+    }
+}
+return $index;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -56,7 +65,7 @@ $show_complete_tasks = rand(0, 1);
                         <li class="main-navigation__list-item">
 
                             <a class="main-navigation__list-item-link" href="#"><?=$elem ?></a>
-                            <span class="main-navigation__list-item-count">0</span>
+                            <span class="main-navigation__list-item-count"><?= number_of_tasks($tasks, $elem); ?></span>
                         </li>
                         <?php endforeach ?>
                       
